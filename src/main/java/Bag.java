@@ -5,6 +5,8 @@
  * 1. Introduction to Java helpful.
  */
 
+import java.lang.reflect.Array;
+
 public abstract class Bag {
     /*
      * TODO: Create the following private instance variables
@@ -13,6 +15,11 @@ public abstract class Bag {
      *       - an int named capacity
      *       - an array of Strings named contents
      */
+
+    private String color;
+    private int numberOfContents;
+    private int capacity;
+    private String[] contents;
 
 
 
@@ -27,7 +34,13 @@ public abstract class Bag {
      * its contents.)
      */
 
+    public Bag (String color, int capacity){
+        this.color = color;
+        this.capacity = capacity;
+        this.numberOfContents = 0;
+        this.contents = new String[this.capacity];
 
+    }
 
 
     /*
@@ -38,6 +51,16 @@ public abstract class Bag {
      *           - getCapacity
      */
 
+    public String getColor() {
+        return this.color;
+    }
+    public int getNumberOfContents(){
+        return this.numberOfContents;
+    }
+
+    public int getCapacity(){
+        return this.capacity;
+    }
 
 
 
@@ -46,7 +69,9 @@ public abstract class Bag {
      *       color of this bag to the given color.
      */
 
-
+    public void setColor(String color){
+        this.color = color;
+    }
 
 
 
@@ -61,6 +86,12 @@ public abstract class Bag {
      *       and false otherwise.
      */
 
+    public void addItem (String item){
+        if (this.numberOfContents < this.capacity){
+            this.contents[numberOfContents] = item;
+            numberOfContents += 1;
+        }
+    }
 
 
 
@@ -75,6 +106,12 @@ public abstract class Bag {
      *
      * @return
      */
+    public String popItem (){
+        String lastItem = this.contents[numberOfContents-1];
+        this.contents[numberOfContents-1] = null;
+        numberOfContents -= 1;
+        return lastItem;
+    }
 
 
 
@@ -87,6 +124,7 @@ public abstract class Bag {
      */
     public void increaseCapacity(int n) {
         // TODO: Implement this method.
+        this.capacity += n;
 
     }
 
